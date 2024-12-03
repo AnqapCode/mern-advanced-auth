@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 5000;
 // production
 // const __dirname = path.resolve();
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 
 app.use(express.json()); // allows us to parse incoming request: req.body
 app.use(cookieParser()); // allows us to parse incoming cookies
