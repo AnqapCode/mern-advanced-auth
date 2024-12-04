@@ -13,7 +13,7 @@ import authRoutes from "./routes/auth.routes.js";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
 
 // production
 // const __dirname = path.resolve();
@@ -38,7 +38,7 @@ app.use("/api/auth", authRoutes);
 //   });
 // }
 
-app.listen(PORT, () => {
-  connectDB();
-  console.log(`Server is running on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+connectDB();
+// console.log(`Server is running on port ${PORT}`);
+// });
