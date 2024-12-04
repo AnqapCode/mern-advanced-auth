@@ -18,7 +18,7 @@ const PORT = process.env.PORT;
 // production
 // const __dirname = path.resolve();
 
-app.use(cors({ origin: process.env.VITE_REACT_APP_BACKEND_BASEURL, credentials: true }));
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 
 app.use(express.json()); // allows us to parse incoming request: req.body
 app.use(cookieParser()); // allows us to parse incoming cookies
