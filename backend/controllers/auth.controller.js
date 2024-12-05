@@ -30,12 +30,11 @@ export const signup = async (req, res) => {
       verificationTokenExpiresAt: Date.now() + 24 * 60 * 60 * 1000, // 24 hours
     });
 
-    await user.save();
-
     // jwt
     generateTokenAndSetCookie(res, user._id);
 
     await sendVerificationEmail(user.email, verificationToken);
+    await user.save();
 
     res.status(201).json({
       success: true,
@@ -66,9 +65,8 @@ export const verifyEmail = async (req, res) => {
     user.verificationToken = undefined;
     user.verificationTokenExpiresAt = undefined;
 
-    await user.save();
-
     await sendWelcomeEmail(user.email, user.name);
+    await user.save();
 
     res.status(200).json({
       success: true,
@@ -137,10 +135,9 @@ export const forgotPassword = async (req, res) => {
     user.resetPasswordToken = resetToken;
     user.resetPasswordExpiresAt = resetTokenExpiresAt;
 
-    await user.save();
-
     // send email
     await sendPasswordResetEmail(user.email, `${process.env.CLIENT_URL}/reset-password/${resetToken}`);
+    await user.save();
 
     res.status(200).json({ success: true, message: "Password reset link sent to your email" });
   } catch (error) {
